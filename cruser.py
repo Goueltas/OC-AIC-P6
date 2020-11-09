@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
 """
@@ -31,7 +31,7 @@ def creer_user(username, groupname, password):
     try:
         grp.getgrnam(groupname)
     except:
-        subprocess.run(['addgroup', groupname])
+        subprocess.run(['groupadd', groupname])
 
     # Cree utilisateur avec home standard, groupe, shell bash
     subprocess.run(['useradd', '--home', home, '--gid', groupname, '--create-home', '--password', password, '--shell', '/bin/bash', username]) #ou /home/$NEWGROUP/$NEW_USER ?
@@ -53,7 +53,7 @@ def prepare_user(username, groupname=False):
     # Teste si utilisateur existe déjà
     if user_exists(username):
         print("L'utilisateur {} existe déjà.".format(username))
-        exit()
+        return()
     # Sinon, le crée
     else:
         # Crée le groupe s'il n'a pas été fourni en argument du script
@@ -123,7 +123,9 @@ def creer_mot_de_passe(username):
     while password != password1:
         password = getpass.getpass("Indiquez le mot de passe de {}:".format(username))
         password1 = getpass.getpass("Confirmez le mot de passe :")
-    return password
+    sel = crypt.mksalt()
+    pw = crypt.crypt(password, sel)
+    return pw
 
 ###################
 #### PRINCIPAL ####
