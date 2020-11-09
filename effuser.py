@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
 """
@@ -18,6 +18,7 @@ Dans ce cas, le mot de passe ne sera pas pris en compte.
 import os
 import subprocess
 import sys
+import tarfile
 
 def supprime_user(username, groupname=False):
     """
@@ -30,15 +31,25 @@ def supprime_user(username, groupname=False):
         groupname = groupe(username)
     # Teste si utilisateur existe
     if user_exists(username):
-        # Supprime utilisateur et sauvegarde données (/home/userHome dans ./utilisateur.bak
-        subprocess.run(['deluser', '--remove-home', '--backup', username])
-
+    # S'il existe, déplace le fichier /var/mail/username vers /home/username/mail/
+        try:
+            with open("/var/mail/{}".format(username)): pass
+            os.mkdir("/home/{}/mail".format(username))
+            os.rename("/var/mail/{}".format(username), "/home/{0}/mail/{0}".format(username))
+        except FileNotFoundError:
+            pass
+        # Sauvegarde /home/username
+        backup = tarfile.open("{}.tar.bz2".format(username), "w:bz2")
+        backup.add("/home/{}".format(username))
+        backup.close
+        # Supprime utilisateur
+        subprocess.run(['userdel', '--remove', username])
         # Supprime groupe s'il existe et est vide
         with open('/etc/group', "r") as groupes:
             for ligne in groupes:
-                group = ligne.split(':', 1)[0]
+                group = ligne.split(':')[0]
                 if group == groupname:
-                    subprocess.run(['delgroup', '--only-if-empty', groupname])
+                    subprocess.run(['groupdel', groupname])
         print("L'utilisateur {} a été supprimé...".format(username))
         print("Son dossier personnel a été sauvegardé dans le dossier courant")
         print("sous le nom {}.tar.bz2".format(username))
