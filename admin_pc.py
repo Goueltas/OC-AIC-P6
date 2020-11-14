@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+
 import os
 import sys
 import chname
 import cruser
 import effuser
+import f2bssh
 
 def menu():
     """
@@ -13,11 +15,12 @@ def menu():
     """
 
     choix = ""
-    while choix not in ["1", "2", "3", "q", "Q"]:
+    while choix not in ["1", "2", "3", "4", "q", "Q"]:
         print("Menu :")
         print("1 : Changer le hostname de ce PC")
         print("2 : Créer un(des) utilisateur(s)")
         print("3 : Supprimer un(des) utilisateur(s)")
+        print("4 : Configurer le serveur ssh")
         print("Q : Quitter\n")
         choix = input("Votre choix :")
     return choix
@@ -54,6 +57,8 @@ def action(choix):
         except FileNotFoundError:
             if effuser.supprime_user(old_user) == None:
                 print("L\'utilisateur {} a bien été supprimé.".format(old_user))
+    elif choix == "4":
+        f2bssh.cfgfiles()
     elif choix.upper() == "Q":
         exit()
 
@@ -91,4 +96,4 @@ if __name__ == "__main__":
         action(choix)
         autre_action = continuer()
 
-    exit(0)
+    exit()

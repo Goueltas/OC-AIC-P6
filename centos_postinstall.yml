@@ -1,0 +1,21 @@
+---
+- hosts: centos-8
+  tasks:
+    - name: "Installation de git"
+      become: true
+      dnf:
+        name: git
+        state: present
+        update_cache: yes
+    - name: "Installation Fail2Ban"
+      dnf:
+        name: "fail2ban-server, fail2ban-firewalld"
+        state: present
+
+- hosts: centos-8
+  tasks:
+    - name: "Mise à jour CentOS"
+      dnf:
+        name: "*"
+        state: latest
+

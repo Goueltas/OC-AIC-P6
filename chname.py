@@ -49,6 +49,10 @@ def change_hostname(new_hostname):
     if redemarrer.upper() != "N":
         subprocess.run(["shutdown", "-r", "+0"])
 
+#################
+### PRINCIPAL ###
+#################
+
 if __name__ == "__main__":
     # Teste root user
     if os.geteuid() != 0:
