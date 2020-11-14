@@ -56,7 +56,7 @@ def action(choix):
             if effuser.supprime_user(old_user) == None:
                 print("L\'utilisateur {} a bien été supprimé.".format(old_user))
     elif choix == "4":
-        sshd_config
+        sshd_cfg.conf()
     elif choix.upper() == "Q":
         exit()
 

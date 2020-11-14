@@ -1,0 +1,5 @@
+#######################################################
+#              Bienvenue sur centos-8...              #
+# Si vous faites partie des utilisateurs autorisés !  #
+#       Sinon, déconnectez-vous IMMEDIATEMENT !       #
+#######################################################
