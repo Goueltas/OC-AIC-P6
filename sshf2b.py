@@ -15,7 +15,7 @@ Crée le fichier d'avertissement de connexion (Banner) /etc/issue.net.
 import os
 import shutil
 
-def conf():
+def cfgfiles():
     print("Création du fichier /etc/fail2ban/jail.d/sshd.local")
     shutil.copyfile('sshd_f2b.txt', '/etc/fail2ban/jail.d/sshd.local')
     print("Sauvegarde du fichier de configuration /etc/ssh/sshd_config en \'.bak\'.")
@@ -37,5 +37,5 @@ if __name__ == "__main__":
         print("Sorry, you must be root.")
         exit(1)
     
-    conf()
+    cfgfiles()
 exit()

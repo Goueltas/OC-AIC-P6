@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
 
+
 import os
 import sys
 import chname
 import cruser
 import effuser
+import f2bssh
 
 def menu():
     """
@@ -56,7 +58,7 @@ def action(choix):
             if effuser.supprime_user(old_user) == None:
                 print("L\'utilisateur {} a bien été supprimé.".format(old_user))
     elif choix == "4":
-        sshd_cfg.conf()
+        f2bssh.cfgfiles()
     elif choix.upper() == "Q":
         exit()
 
@@ -94,4 +96,4 @@ if __name__ == "__main__":
         action(choix)
         autre_action = continuer()
 
-    exit(0)
+    exit()
