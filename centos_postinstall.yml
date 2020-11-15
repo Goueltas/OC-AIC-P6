@@ -1,21 +1,68 @@
 ---
-- hosts: centos-8
+- name: Post-installation Serveurs
+  hosts: all
+  remote_user: user-ansible
+  become: yes
+#  become_method: ask-become-pass
+
   tasks:
-    - name: "Installation de git"
-      become: true
+    - name: Activation du dépôt EPEL
+      dnf:
+        name: epel-release
+        state: present
+    - name: Mise à jour des dépôts
+      dnf: update_cache=yes
+    - name: Installation de git
       dnf:
         name: git
         state: present
         update_cache: yes
-    - name: "Installation Fail2Ban"
+    - name: Installation Fail2Ban
       dnf:
-        name: "fail2ban-server, fail2ban-firewalld"
+        name: fail2ban-server,fail2ban-firewalld
         state: present
-
-- hosts: centos-8
-  tasks:
-    - name: "Mise à jour CentOS"
+    - name: Installation vim
+      dnf: name=vim state=present
+    - name: Mise à jour
       dnf:
         name: "*"
         state: latest
 
+- name: Serveurs web
+  hosts: srvweb
+  remote_user: user-ansible
+  become: yes
+#  become_method: ask-become-pass
+
+  tasks:
+    - name: Installation du serveur apache
+      dnf:
+        name: httpd
+        state: present
+    - name: Activation du service apache
+      service:
+        name: httpd
+        enabled: yes
+        state: started
+    - name: Installation php packages
+      dnf:
+        name: "php,php-mysqlnd,php-xml,php-mbstring,php-gd,php-pdo,php-opcache,php-json"
+        state: present
+
+
+- name: Serveurs BDD
+  hosts: bdd
+  remote_user: user-ansible
+  become: yes
+#  become_method: ask-become-pass
+
+  tasks:
+    - name: Installation MariaDB
+      dnf:
+        name:  "mariadb-server,python3-PyMySQL"
+        state: present
+    - name: Démarre le service MariaDB
+      service:
+        name: "mariadb"
+        state: "started"
+        enabled: yes
