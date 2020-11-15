@@ -62,6 +62,8 @@ sudo -u $venvuser python3 -m venv $virtenv
 cp centos_postinstall.yml $virtenv
 chown $venvuser:$venvuser $virtenv
 
+cd $virtenv
+
 # Création des clés ssh
 sudo -u $venvuser ssh-keygen -t ecdsa
 
@@ -82,8 +84,8 @@ echo "[bdd]" >> $virtenv/inventaire.ini
 echo "bdd1" >> $virtenv/inventaire.ini
 
 
-#ssh-copy-id -i /home/$distuser/.ssh/id_ecdsa.pub $distuser@http1
-#ssh-copy-id -i /home/$distuser/.ssh/id_ecdsa.pub $distuser@bdd1
+ssh-copy-id -i /home/$distuser/.ssh/id_ecdsa.pub $distuser@http1
+ssh-copy-id -i /home/$distuser/.ssh/id_ecdsa.pub $distuser@bdd1
 ssh-copy-id -i /home/$distuser/.ssh/id_ecdsa.pub $distuser@centos-8
 
 source $virtenv/bin/activate
