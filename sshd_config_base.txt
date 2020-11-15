@@ -34,7 +34,7 @@ LoginGraceTime 30
 PermitRootLogin no
 #StrictModes yes
 #MaxAuthTries 6
-#MaxSessions 10
+MaxSessions 1
 
 #PubkeyAuthentication yes
 
@@ -55,7 +55,7 @@ PermitRootLogin no
 #IgnoreRhosts yes
 
 # To disable tunneled clear text passwords, change to no here!
-#PasswordAuthentication yes
+PasswordAuthentication no
 #PermitEmptyPasswords no
 
 # Change to yes to enable challenge-response passwords (beware issues with
@@ -122,4 +122,4 @@ Subsystem	sftp	/usr/lib/openssh/sftp-server
 #	PermitTTY no
 #	ForceCommand cvs server
 
-AllowUsers admuser, user-ansible
+AllowUsers user-ansible
