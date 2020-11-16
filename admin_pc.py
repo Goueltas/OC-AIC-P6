@@ -20,7 +20,7 @@ def menu():
         print("1 : Changer le hostname de ce PC")
         print("2 : Créer un(des) utilisateur(s)")
         print("3 : Supprimer un(des) utilisateur(s)")
-        print("4 : Configurer le serveur ssh")
+        print("4 : Configurer le serveur ssh et fail2ban")
         print("Q : Quitter\n")
         choix = input("Votre choix :")
     return choix

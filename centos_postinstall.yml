@@ -5,12 +5,12 @@
   become: yes
 
   tasks:
+    - name: Mise à jour des dépôts
+      dnf: update_cache=yes
     - name: Activation du dépôt EPEL
       dnf:
         name: epel-release
         state: present
-    - name: Mise à jour des dépôts
-      dnf: update_cache=yes
     - name: Installation de git
       dnf:
         name: git
@@ -20,12 +20,13 @@
       dnf:
         name: fail2ban-server,fail2ban-firewalld
         state: present
+    - name: Activation fail2ban
+      service:
+        name: fail2ban
+        enabled: yes
+        state: started
     - name: Installation vim
       dnf: name=vim state=present
-    - name: Mise à jour
-      dnf:
-        name: "*"
-        state: latest
 
 - name: Serveurs web
   hosts: srvweb
@@ -47,7 +48,6 @@
         name: "php,php-mysqlnd,php-xml,php-mbstring,php-gd,php-pdo,php-opcache,php-json"
         state: present
 
-
 - name: Serveurs BDD
   hosts: bdd
   remote_user: user-ansible
@@ -63,3 +63,14 @@
         name: mariadb
         state: started
         enabled: yes
+
+- name: Mise à jour du système
+  hosts: all
+  remote_user: user-ansible
+  become: yes
+
+  tasks:
+    - name: Mise à jour
+      dnf:
+        name: "*"
+        state: latest
