@@ -74,19 +74,17 @@ ansible --version
 deactivate
 
 #echo "192.168.122.11 http1" >> /etc/hosts
-#echo "192.168.122.12 bdd" >> /etc/hosts
-#echo "192.168.122.13 centos-8" >> /etc/hosts
+#echo "192.168.122.12 bdd1" >> /etc/hosts
 
 echo "[srvweb]" > $virtenv/inventaire.ini
 echo "http1" >> $virtenv/inventaire.ini
-echo "centos-8" >> $virtenv/inventaire.ini
+#echo "centos-8" >> $virtenv/inventaire.ini
 echo "[bdd]" >> $virtenv/inventaire.ini
 echo "bdd1" >> $virtenv/inventaire.ini
 
 
-ssh-copy-id -i /home/$distuser/.ssh/id_ecdsa.pub $distuser@http1
-ssh-copy-id -i /home/$distuser/.ssh/id_ecdsa.pub $distuser@bdd1
-ssh-copy-id -i /home/$distuser/.ssh/id_ecdsa.pub $distuser@centos-8
+ssh-copy-id -i /home/$venvuser/.ssh/id_ecdsa.pub $distuser@http1
+ssh-copy-id -i /home/$venvuser/.ssh/id_ecdsa.pub $distuser@bdd1
 
 source $virtenv/bin/activate
 ansible-playbook -i inventaire.ini --ask-become-pass centos_postinstall.yml

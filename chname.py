@@ -23,7 +23,10 @@ def change_hostname(new_hostname):
     hsts = open("/etc/hosts", "r")
     contenu = hsts.read()
     hsts.close()
-    contenu = contenu.replace(cur_hostname, new_hostname)
+    if cur_hostname in contenu:
+        contenu = contenu.replace(cur_hostname, new_hostname)
+    else:
+        contenu += "127.0.1.1   {}".format(new_hostname)
     hsts = open("/etc/hosts", "w")
     hsts.write(contenu)
     hsts.close()

@@ -3,7 +3,6 @@
   hosts: all
   remote_user: user-ansible
   become: yes
-#  become_method: ask-become-pass
 
   tasks:
     - name: Activation du dépôt EPEL
@@ -32,7 +31,6 @@
   hosts: srvweb
   remote_user: user-ansible
   become: yes
-#  become_method: ask-become-pass
 
   tasks:
     - name: Installation du serveur apache
@@ -54,7 +52,6 @@
   hosts: bdd
   remote_user: user-ansible
   become: yes
-#  become_method: ask-become-pass
 
   tasks:
     - name: Installation MariaDB
@@ -63,6 +60,6 @@
         state: present
     - name: Démarre le service MariaDB
       service:
-        name: "mariadb"
-        state: "started"
+        name: mariadb
+        state: started
         enabled: yes
