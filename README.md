@@ -7,15 +7,18 @@ Ces scripts ont été réalisés dans le cadre d'une formation. Ils ont été te
 
 Je vous encourage vivement à lire les commentaires et doc_strings présent dans les scripts AVANT de les utiliser !
 
+
 scripts_py: Ce dossier contient le script admin.py qui est un menu d'appel des autres scripts python.
 
-    - Chaque script peut être utilisé seul.
+Chaque script peut être utilisé seul.
 
-    - fileUsers : Fichier texte destiné à servir d'exemple et de test pour la création/suppression d'utilisateurs multiples.
+fileUsers : Fichier texte destiné à servir d'exemple et de test pour la création/suppression d'utilisateurs multiples.
     
-    - sshd.local, sshd_config_base.txt, issue.txt: Ces fichiers doivent être édités et modifiés en fonction des besoins AVANT l'utilisation du script f2bssh.py.
+sshd.local, sshd_config_base.txt, issue.txt: Ces fichiers doivent être édités et modifiés en fonction des besoins AVANT l'utilisation du script f2bssh.py.
+
 
 ssh_connect.sh :
+
 Ce script agit à distance sur des machine dont le nom est codé en dur dans le script ("http1" et "bdd1"). Vous devez modifier ces noms en fonction de vos machines distantes, voire copier/coller les lignes y faisant référence si vous souhaitez ajouter des machines.
 
 Actions du script:
@@ -26,9 +29,11 @@ Crée l'environnement virtuel sur lmachine locale avec les dernières version de
 
 Lance le playbook centos_postinstall.yml
 
+
 centos_postinstall.yml :
 
 Playbook ansible basique qui installe epel, git, fail2ban, apache, php, mariadb, ouvre le port 80 du serveur apache et procède aux mises à jour des machines distantes.
+
 
 Exemple d'utilisation :
 
