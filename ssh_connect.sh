@@ -60,7 +60,7 @@ apt install python3 python3-venv sshpass
 # et copie du playbook
 sudo -u $venvuser python3 -m venv $virtenv
 cp centos_postinstall.yml $virtenv
-chown $venvuser:$venvuser $virtenv
+chown -R $venvuser:$venvuser $virtenv
 
 cd $virtenv
 
@@ -90,5 +90,7 @@ source $virtenv/bin/activate
 ansible-playbook -i inventaire.ini --ask-become-pass centos_postinstall.yml
 deactivate
 EXITUSER
+
+
 
 exit 0

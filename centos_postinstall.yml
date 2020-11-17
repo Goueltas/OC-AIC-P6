@@ -47,6 +47,13 @@
       dnf:
         name: "php,php-mysqlnd,php-xml,php-mbstring,php-gd,php-pdo,php-opcache,php-json"
         state: present
+    - name: Autoriser trafic http (zone par défaut)
+      ansible.posix.firewalld:
+        zone: public
+        service: http
+        permanent: yes
+        immediate: yes
+        state: enabled
 
 - name: Serveurs BDD
   hosts: bdd
