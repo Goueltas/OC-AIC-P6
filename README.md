@@ -14,7 +14,7 @@ Chaque script peut être utilisé seul.
 
 fileUsers : Fichier texte destiné à servir d'exemple et de test pour la création/suppression d'utilisateurs multiples.
     
-sshd.local, sshd_config_base.txt, issue.txt: Ces fichiers doivent être édités et modifiés en fonction des besoins AVANT l'utilisation du script f2bssh.py.
+sshd.local, sshd_config_base.txt, issue.txt: Ces fichiers DOIVENT être édités et modifiés en fonction des besoins AVANT l'utilisation du script f2bssh.py.
 
 
 ssh_connect.sh :
@@ -63,4 +63,4 @@ Vérifier le bon fonctionnement de l'authentification par clé pour l'utilisateu
 
 SI ET SEULEMENT SI la connexion avec authentification par clé a réussi:
 
-Lancer le script f2bssh.py (ou admin_pc.py, choix 4).
+Lancer le script f2bssh.py (ou admin_pc.py, choix 4) sur les machines distantes.
