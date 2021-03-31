@@ -25,7 +25,7 @@ Actions du script:
 
 Paramètre l'authentification par clé pour la connexion ssh entre le machine locale et les machines distantes.
 
-Crée l'environnement virtuel sur lmachine locale avec les dernières version de python et ansible disponibles dans les dépôts.
+Crée l'environnement virtuel sur la machine locale avec les dernières version de python et ansible disponibles dans les dépôts.
 
 Lance le playbook centos_postinstall.yml
 
